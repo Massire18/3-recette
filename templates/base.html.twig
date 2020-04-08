@@ -22,7 +22,9 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{path("aliments")}}">Aliments</a>
                 <div class="dropdown-divider"></div>
+                {% if is_granted('Role_ADMIN') %}
                 <a class="dropdown-item" href="{{path("admin_aliment")}}">administration</a>
+                {% endif %}
                 </div>
             </li>
 
@@ -33,9 +35,23 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{path("types")}}">types</a>
                 <div class="dropdown-divider"></div>
+                {% if is_granted('Role_ADMIN') %}
                 <a class="dropdown-item" href="{{path("admin_type")}}">administration</a>
+                {% endif %}
                 </div>
             </li>
+            {% if not app.user %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('inscription')}} ">Inscription</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('connexion')}} ">Se connecter</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('deconnexion')}} ">Déconnexionut</a>
+            </li>
+            {% endif %}
             </ul>
         </div>
         </nav>
